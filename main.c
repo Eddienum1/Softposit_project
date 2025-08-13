@@ -5,7 +5,7 @@ int main() {
     posit64_t pA, pB, pZ;
     double dA, dB, dZ;
 
-    pA = castP64(0x5000001616156AB5);
+    pA = castP64(0x50000664656ADC55);
     pB = castP64(0x5681656461331664);
 
     //Testing posit64 convert to double
