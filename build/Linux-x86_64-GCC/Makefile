@@ -184,6 +184,19 @@ OBJS_OTHERS = \
   p64_eq$(OBJ) \
   p64_le$(OBJ) \
   p64_lt$(OBJ) \
+  p64_sqrt$(OBJ) \
+  p64_sub$(OBJ) \
+  p64_to_i32$(OBJ) \
+  p64_to_i64$(OBJ) \
+  p64_to_p16$(OBJ) \
+  p64_to_p32$(OBJ) \
+  p64_to_ui32$(OBJ) \
+  p64_to_ui64$(OBJ) \
+  s_addMagsP64$(OBJ) \
+  s_mulAddP64$(OBJ) \
+  s_subMagsP64$(OBJ) \
+  ui32_to_p64$(OBJ) \
+  ui64_to_p64$(OBJ) \
   i64_to_p64$(OBJ) \
   quire32_fdp_add$(OBJ) \
   quire32_fdp_sub$(OBJ) \

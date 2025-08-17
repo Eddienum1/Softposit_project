@@ -79,13 +79,13 @@ extern "C"{
 posit8_t  ui32_to_p8( uint32_t );
 posit16_t ui32_to_p16( uint32_t );
 posit32_t ui32_to_p32( uint32_t );
-//posit64_t ui32_to_p64( uint32_t );
+posit64_t ui32_to_p64( uint32_t );
 
 
 posit8_t  ui64_to_p8( uint64_t );
 posit16_t ui64_to_p16( uint64_t );
 posit32_t ui64_to_p32( uint64_t );
-//posit64_t ui64_to_p64( uint64_t );
+posit64_t ui64_to_p64( uint64_t );
 
 posit8_t  i32_to_p8( int32_t );
 posit16_t i32_to_p16( int32_t );
@@ -625,14 +625,14 @@ static inline quire_1_t qX1Clr(){
 /*----------------------------------------------------------------------------
 | 64-bit (double-precision) floating-point operations.
 *----------------------------------------------------------------------------*/
-//uint_fast32_t p64_to_ui32( posit64_t, uint_fast16_t, bool );
+uint_fast32_t p64_to_ui32( posit64_t );
 uint_fast64_t p64_to_ui64( posit64_t );
-//int_fast32_t p64_to_i32( posit64_t, uint_fast16_t, bool );
+int_fast32_t p64_to_i32( posit64_t );
 int_fast64_t p64_to_i64( posit64_t );
 
-/*posit8_t p64_to_p8( posit64_t );
+//posit8_t p64_to_p8( posit64_t );
 posit16_t p64_to_p16( posit64_t );
-posit32_t p64_to_p32( posit64_t );*/
+posit32_t p64_to_p32( posit64_t );
 
 double convertP64ToDouble( posit64_t );
 posit64_t convertDoubleToP64(double);
@@ -644,7 +644,7 @@ posit64_t p64_mul( posit64_t, posit64_t );
 posit64_t p64_mulAdd( posit64_t, posit64_t, posit64_t );
 posit64_t p64_div( posit64_t, posit64_t );
 //posit64_t p64_rem( posit64_t, posit64_t );
-//posit64_t p64_sqrt( posit64_t );
+posit64_t p64_sqrt( posit64_t );
 bool p64_eq( posit64_t, posit64_t );
 bool p64_le( posit64_t, posit64_t );
 bool p64_lt( posit64_t, posit64_t );
