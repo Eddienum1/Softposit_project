@@ -38,7 +38,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 posit64_t p64_add( posit64_t a, posit64_t b ){
     union ui64_p64 uA, uB, uZ;
-    uint_fast64_t uiA, uiB
+    uint_fast64_t uiA, uiB;
 
     uA.p = a;
 	uiA = uA.ui;

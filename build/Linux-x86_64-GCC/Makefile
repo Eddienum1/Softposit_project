@@ -182,6 +182,7 @@ OBJS_OTHERS = \
   p64_mul$(OBJ) \
   p64_div$(OBJ) \
   p64_eq$(OBJ) \
+  p64_add$(OBJ) \
   p64_le$(OBJ) \
   p64_lt$(OBJ) \
   p64_sqrt$(OBJ) \
