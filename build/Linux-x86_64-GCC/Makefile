@@ -178,6 +178,7 @@ OBJS_OTHERS = \
   p32_le$(OBJ) \
   p32_lt$(OBJ) \
   p32_sqrt$(OBJ) \
+  i32_to_p64$(OBJ) \
   p64_roundToInt$(OBJ) \
   p64_mul$(OBJ) \
   p64_div$(OBJ) \

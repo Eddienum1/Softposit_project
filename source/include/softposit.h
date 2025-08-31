@@ -90,7 +90,7 @@ posit64_t ui64_to_p64( uint64_t );
 posit8_t  i32_to_p8( int32_t );
 posit16_t i32_to_p16( int32_t );
 posit32_t i32_to_p32( int32_t );
-//posit64_t i32_to_p64( int32_t );
+posit64_t i32_to_p64( int32_t );
 
 posit8_t  i64_to_p8( int64_t );
 posit16_t i64_to_p16( int64_t );

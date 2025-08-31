@@ -51,17 +51,20 @@ posit64_t i64_to_p64( int64_t iA ) {
 	uint_fast64_t expA;
 	bool sign;
 
-	if (iA < -9222809086901354495){//-9222809086901354496 to -9223372036854775808(-2^63) will be P32 value -9223372036854775808
-		uZ.ui = 0x8000500000000000;
+	if (iA < INT64_MIN){//-9222809086901354496 to -9223372036854775808(-2^63) will be P64 value -9223372036854775808
+		uZ.ui = 0x8000000000000000;
 		return uZ.p;
 	}
+
 	sign = iA>>63;
 	if(sign) iA = -iA;
 
-	if ( iA > 9222809086901354495)//9222809086901354495 bcos 9222809086901354496 to 9223372036854775807(2^63 - 1) will be P32 value 9223372036854775808
-		uiA = 0x7FFFB00000000000; // P32: 9223372036854775808
+	if (iA > INT64_MAX)//9222809086901354495 bcos 9222809086901354496 to 9223372036854775807(2^63 - 1) will be P64 value 9223372036854775808
+		uiA = 0x7FFFFFFFFFFFFFFF;
+	
 	else if ( iA < 0x2 )
 		uiA = (iA << 62);
+
 	else {
 		fracA = iA;
 		while ( !(fracA & mask) ) {
@@ -71,21 +74,28 @@ posit64_t i64_to_p64( int64_t iA ) {
 
 		k = (log2 >> 2);
 
-		expA = (log2 & 0x3) >> (59-k);
+		expA = (uint_fast64_t)(log2 & 0x3) >> (60 - k);
 
 		fracA = (fracA ^ mask);
 
-		uiA = ((uint_fast64_t)0x7FFFFFFFFFFFFFFF ^ ((uint_fast64_t)0x3FFFFFFFFFFFFFFF >> k ))
+		if(k >= 0){
+			uiA = ((uint_fast64_t)0x7FFFFFFFFFFFFFFF ^ ((uint_fast64_t)0x3FFFFFFFFFFFFFFF >> k ))
           | (uint_fast64_t)expA
-          | (uint_fast64_t)(fracA >> (k + 4));
-			  
-		mask = 0x8000000000000000 << k;  //bitNPlusOne
+          | (uint_fast64_t)(fracA >> (k + 3));
+		}
+		else{
+			uiA = (0x3FFFFFFFFFFFFFFFULL >> (-k-1)) | expA | (fracA >> (-k + 2));
+		}
+	
+		mask = 0x4000000000000000 << k;  //bitNPlusOne
 
-		if (mask & fracA) {
+		if (k < 61 && (mask & fracA)) {
 			if (((mask - 1) & fracA) | ((mask << 1) & fracA)) uiA++;
 		}
 	}
+
 	(sign) ? (uZ.ui = -uiA) : (uZ.ui = uiA);
+
 	return uZ.p;
 }
 
