@@ -44,23 +44,23 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "internals.h"
 
 posit64_t i64_to_p64( int64_t iA ) {
-	int_fast8_t k, log2 = 63;;//length of bit (e.g. 9222809086901354496) in int (64 but because we have only 64 bits, so one bit off to accomdate that fact)
+	int_fast8_t k, log2 = 63;//length of bit (e.g. 9222809086901354496) in int (64 but because we have only 64 bits, so one bit off to accomdate that fact)
 	union ui64_p64 uZ;
 	uint_fast64_t uiA;
 	uint_fast64_t mask = 0x8000000000000000, fracA;
 	uint_fast64_t expA;
 	bool sign;
 
-	if (iA < INT64_MIN){//-9222809086901354496 to -9223372036854775808(-2^63) will be P64 value -9223372036854775808
-		uZ.ui = 0x8000000000000000;
+	if (iA < -9222809086901354495){//-9222809086901354496 to -9223372036854775808(-2^63) will be P64 value -9223372036854775808
+		uZ.ui = 0x8000500000000000;
 		return uZ.p;
 	}
 
 	sign = iA>>63;
 	if(sign) iA = -iA;
 
-	if (iA > INT64_MAX)//9222809086901354495 bcos 9222809086901354496 to 9223372036854775807(2^63 - 1) will be P64 value 9223372036854775808
-		uiA = 0x7FFFFFFFFFFFFFFF;
+	if (iA > 9222809086901354495)//9222809086901354495 bcos 9222809086901354496 to 9223372036854775807(2^63 - 1) will be P64 value 9223372036854775808
+		uiA = 0x7FFFB00000000000;
 	
 	else if ( iA < 0x2 )
 		uiA = (iA << 62);
@@ -74,22 +74,17 @@ posit64_t i64_to_p64( int64_t iA ) {
 
 		k = (log2 >> 2);
 
-		expA = (uint_fast64_t)(log2 & 0x3) >> (60 - k);
+		expA = (uint_fast64_t)(log2 & 0x3) << (59 - k);
 
 		fracA = (fracA ^ mask);
 
-		if(k >= 0){
-			uiA = ((uint_fast64_t)0x7FFFFFFFFFFFFFFF ^ ((uint_fast64_t)0x3FFFFFFFFFFFFFFF >> k ))
+		uiA = ((uint_fast64_t)0x7FFFFFFFFFFFFFFF ^ ((uint_fast64_t)0x3FFFFFFFFFFFFFFF >> k ))
           | (uint_fast64_t)expA
-          | (uint_fast64_t)(fracA >> (k + 3));
-		}
-		else{
-			uiA = (0x3FFFFFFFFFFFFFFFULL >> (-k-1)) | expA | (fracA >> (-k + 2));
-		}
+          | (uint_fast64_t)(fracA >> (k + 4));
 	
 		mask = 0x4000000000000000 << k;  //bitNPlusOne
 
-		if (k < 61 && (mask & fracA)) {
+		if (mask & fracA) {
 			if (((mask - 1) & fracA) | ((mask << 1) & fracA)) uiA++;
 		}
 	}

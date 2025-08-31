@@ -132,7 +132,7 @@ int main() {
 
     printf("\n");
 
-    int32_t iA = INT32_MAX;
+    int32_t iA = 123456;
     pZ = i32_to_p64(iA);
     dZ = convertP64ToDouble(pZ);
     printf("iA convert to posit64 in Hex: ");
@@ -141,7 +141,7 @@ int main() {
 
     printf("\n");
 
-    int64_t iB = 1024;
+    int64_t iB = 169764523;
     pZ = i64_to_p64(iB);
     dZ = convertP64ToDouble(pZ);
     printf("iB convert to posit64 in Hex: ");
