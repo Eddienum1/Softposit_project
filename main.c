@@ -2,19 +2,22 @@
 
 int main() {
 
-    posit64_t pA, pB, pZ;
-    double dA, dB, dZ;
+    posit64_t pA, pB, pC, pZ;
+    double dA, dB, dC, dZ;
 
     pA = castP64(0x50616151ABCD5955);
     pB = castP64(0x5681656461331664);
+    pC = castP64(0x1646AB3315DE255F);
 
     //Testing posit64 convert to double
     
     dA = convertP64ToDouble(pA);
     dB = convertP64ToDouble(pB);
+    dC = convertP64ToDouble(pC);
     
     printf("pA convert to double is %.15f\n", dA);
     printf("pB convert to double is %.15f\n", dB);
+    printf("pC convert to double is %.15f\n", dC);
 
     printf("\n");
 
@@ -34,6 +37,7 @@ int main() {
     //Reassign to avoid errors
     pA = castP64(0x50616151ABCD5955);
     pB = castP64(0x5681656461331664);
+    pC = castP64(0x1646AB3315DE255F);
 
     //Testing division
 
@@ -81,6 +85,7 @@ int main() {
     printf("\n");
 
     //Testing sqrt
+
     pZ = p64_sqrt(pA);
     dZ = convertP64ToDouble(pZ);
     printf("sqrt(pA) in Hex: ");
@@ -98,11 +103,34 @@ int main() {
     printf("\n");
 
     //Testing add
+
     pZ = p64_add(pA, pB);
     dZ = convertP64ToDouble(pZ);
     printf("pA + pB in Hex: ");
     printHex(pZ.v);
     printf("pA + pB in double: %.15f\n", dZ);
+
+    printf("\n");
+
+    //Testing sub
+
+    pZ = p64_sub(pA, pB);
+    dZ = convertP64ToDouble(pZ);
+    printf("pA - pB in Hex: ");
+    printHex(pZ.v);
+    printf("pA + pB in double: %.15f\n", dZ);
+
+    printf("\n");
+
+    //Testing muladd
+
+    pZ = p64_mulAdd(pA, pB, pC);
+    dZ = convertP64ToDouble(pZ);
+    printf("pA * pB + pC in Hex: ");
+    printHex(pZ.v);
+    printf("pA * pB + pC in double: %.15f\n", dZ);
+
+    printf("\n");
 
     return 0;
 }

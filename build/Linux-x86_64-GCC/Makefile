@@ -187,6 +187,7 @@ OBJS_OTHERS = \
   p64_lt$(OBJ) \
   p64_sqrt$(OBJ) \
   p64_sub$(OBJ) \
+  p64_mulAdd$(OBJ) \
   p64_to_i32$(OBJ) \
   p64_to_i64$(OBJ) \
   p64_to_p16$(OBJ) \
