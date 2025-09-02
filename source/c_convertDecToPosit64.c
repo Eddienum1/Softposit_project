@@ -39,7 +39,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "platform.h"
 #include "internals.h"
 
+/*
 #ifdef SOFTPOSIT_QUAD
+
 
 void checkQuadExtraP64TwoBits(__float128 f64, __float128 temp, bool *bitsNPlusOne, bool *bitsMore) {
     temp /= 2;
@@ -97,7 +99,9 @@ uint_fast64_t convertQuadFractionP64(__float128 f64, uint_fast16_t fracLength, b
 
     return frac;
 }
+*/	
 
+/*
 posit32_t convertQuadToP32(__float128 f32){
 	union ui32_p32 uZ;
 	bool sign, regS;
@@ -202,7 +206,7 @@ posit32_t convertQuadToP32(__float128 f32){
 			}
 			if (sign) uZ.ui = -uZ.ui & 0xFFFFFFFF;
 			/*if(sign)
-					uZ.ui = -uZ.ui;*/
+					uZ.ui = -uZ.ui;
 		}
 	}
 	else if (f32 < 1 || f32 > -1 ){
@@ -267,7 +271,9 @@ posit32_t convertQuadToP32(__float128 f32){
 	return uZ.p;
 
 }
+*/
 
+/*
 posit_2_t convertQuadToPX2(__float128 f32, int x){
 
 	union ui32_pX2 uZ;
@@ -313,7 +319,7 @@ posit_2_t convertQuadToPX2(__float128 f32, int x){
 		//-minpos
 		uZ.ui = 0xFFFFFFFF;
 		return uZ.p;
-	}*/
+	}
 	else if (f32>1 || f32<-1){
 		if (sign){
 			//Make negative numbers positive for easier computation
@@ -455,6 +461,7 @@ posit_2_t convertQuadToPX2(__float128 f32, int x){
 }
 
 #endif
+*/
 
 void checkExtraP64TwoBits(__float128 f64, __float128 temp, bool * bitsNPlusOne, bool * bitsMore ){
 	temp /= 2;

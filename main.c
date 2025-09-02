@@ -141,13 +141,14 @@ int main() {
 
     printf("\n");
 
-    int64_t iB = 169764523;
+    int64_t iB = INT64_MIN;
     pZ = i64_to_p64(iB);
     dZ = convertP64ToDouble(pZ);
     printf("iB convert to posit64 in Hex: ");
     printHex(pZ.v);
     printf("iB convert to posit64 in double: %.15f\n", dZ);
 
-
+    printf("\n");
+    
     return 0;
 }

@@ -41,7 +41,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "internals.h"
 
 
-
+/*
 #ifdef SOFTPOSIT_QUAD
 __float128 convertP32ToQuad(posit32_t a){
 
@@ -179,7 +179,7 @@ __float128 convertPX2ToQuad(posit_2_t a){
 
 
 #endif
-
+*/
 
 double convertP64ToDouble(posit64_t pA){
 	union ui64_p64 uA;
@@ -232,7 +232,8 @@ double convertP64ToDouble(posit64_t pA){
 		return uZ.d;
 	}
 }
-/*double convertP32ToDoubleOld(posit32_t pA){
+/*
+double convertP32ToDoubleOld(posit32_t pA){
 	union ui32_p32 uZ;
 	double d32;
 	uZ.p = pA;
@@ -295,7 +296,7 @@ double convertP64ToDouble(posit64_t pA){
 
 }*/
 
-
+/*
 double convertPX2ToDouble(posit_2_t a){
 	union ui32_pX2 uZ;
 	double d32;
@@ -358,5 +359,5 @@ double convertPX2ToDouble(posit_2_t a){
 	return d32;
 
 }
-
+*/
 
