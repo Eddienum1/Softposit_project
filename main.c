@@ -84,6 +84,7 @@ int main() {
 
     printf("\n");
 
+    /*
     //Testing sqrt
 
     pZ = p64_sqrt(pA);
@@ -118,7 +119,7 @@ int main() {
     dZ = convertP64ToDouble(pZ);
     printf("pA - pB in Hex: ");
     printHex(pZ.v);
-    printf("pA + pB in double: %.15f\n", dZ);
+    printf("pA - pB in double: %.15f\n", dZ);
 
     printf("\n");
 
@@ -132,7 +133,11 @@ int main() {
 
     printf("\n");
 
-    int32_t iA = 123456;
+    */
+
+    //Testing int32 to posit64
+
+    int32_t iA = 13545696;
     pZ = i32_to_p64(iA);
     dZ = convertP64ToDouble(pZ);
     printf("iA convert to posit64 in Hex: ");
@@ -140,6 +145,8 @@ int main() {
     printf("iA convert to posit64 in double: %.15f\n", dZ);
 
     printf("\n");
+
+    //Testing int64 to posit64
 
     int64_t iB = INT64_MIN;
     pZ = i64_to_p64(iB);
@@ -149,6 +156,6 @@ int main() {
     printf("iB convert to posit64 in double: %.15f\n", dZ);
 
     printf("\n");
-    
+
     return 0;
 }
