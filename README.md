@@ -22,9 +22,12 @@ make -j6 all
 If your source code is for example "main.c" and you want to create an executable "main".
 The "main.c" should place at the same directory.
 
+NOTICE: You have to go back to Softposit/ 
+
 ```
 gcc -O2 -Isource/include -o main main.c build/Linux-x86_64-GCC/softposit.a -lm
 ./main
 ```
+
 
 
