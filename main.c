@@ -1,4 +1,5 @@
 #include "softposit.h"
+#include <inttypes.h>
 
 int main() {
 
@@ -113,7 +114,7 @@ int main() {
 
     printf("\n");
     */
-    
+      
     //Testing add
 
     pZ = p64_add(pA, pB);
