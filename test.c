@@ -9,43 +9,19 @@ uint64_t double_to_u64(double d){
     return u;
 }
 
-int main() {
-/*
-    int N = 20;
-    double ans = (1.0 - pow(10.0, -N)) / 9.0; // ~1/9
-    double exact = exp(ans);
-
-    float prod_f = 1.0f;
-    for (int n = 1; n <= N; n++) {
-        prod_f *= (1.0f + powf(10.0f, -n));
-    }
-
-    double prod_d = 1.0;
-    for (int n = 1; n <= N; n++) {
-        prod_d *= (1.0 + pow(10.0, -n));
-    }
-
-    posit64_t prod_p = convertDoubleToP64(1.0);
-    for (int n = N; n >= 1; n--) {
-        posit64_t term = convertDoubleToP64(1.0 + pow(10.0, -n));
-        prod_p = p64_mul(prod_p, term);
-    }
-
-    double result = convertP64ToDouble(prod_p);
-
-    printf("The exact value is %.15f\n", exact);
-    printf("The result of float is %.15f\n", prod_f);
-    printf("The result of double is %.15f\n", prod_d);
-    printf("The result of posit64 is %.15f\n", result);
-*/
-
+int main(){
     //Compare the ULP(Unit in the Last Place)
-    //It shows the advantage of posit number at the precision of the extremely small number
+    //It shows the advantage of posit number at the precision of the small number
     
+    //2^(-28) <= d1 <= 2^27 is better than double
+    //d1 >= 2^31 or d1 <= 2^(-33) is worse than double
+    double value = 1.0;
+    for(int i = 1; i <= 27; i++) value *= 2; 
+
     //Double ULP
-    double d1 = 1.0;
-    double d2 = nextafter(d1, 2.0);//The next nubmer that can display from 1.0 to 2.0
-    double double_diff = d2 - d1;
+    double d1 = value;
+    double d2 = nextafter(d1, d1 + 1.0);//The next nubmer that can display from d1 to d1 + 1
+    double diff = d2 - d1;
     uint64_t bits;
 
     bits = double_to_u64(d1);
@@ -57,7 +33,7 @@ int main() {
     //Posit64 ULP
     posit64_t p1, p2;
     union ui64_p64 u;
-    p1 = convertDoubleToP64(1.0);
+    p1 = convertDoubleToP64(value);
 
     u.p = p1;
     u.ui += 1;
@@ -71,15 +47,14 @@ int main() {
  
     double pd1 = convertP64ToDouble(p1);
     double pd2 = convertP64ToDouble(p2);
-
+    
     printf("\n");
 
-    //The output shows that double can represent the small difference (ULP) near 1.0
-    //However, the difference between two adjacent posit64 numbers near 1.0 is smaller than double's precision
-    //So when converting to double, this tiny difference cannot be displayed
+    //The diff is smaller, the higher precision around that value
+    //The diff is larger, the lower precision around that value
     printf("Double at 1.0: d1 = %.20f\n", d1);
     printf("Double next number: d2 = %.20f\n", d2);
-    printf("Double diff = %.20e\n", double_diff);//should be a very small number
+    printf("Double diff = %.20e\n", diff);//should be a very small number
 
     printf("\n");
 
