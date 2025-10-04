@@ -29,5 +29,14 @@ gcc -O2 -Isource/include -o main main.c build/Linux-x86_64-GCC/softposit.a -lm
 ./main
 ```
 
+## 4. Function
 
+advantage.c is for showing the range that the precision of 64 bit posit number is better than IEEE double
 
+main.c is for testing the specific number and the result
+
+project.c is a small calculator for comparing the difference between double, 32 bit posit number, and 64 bit posit number
+
+rand.c is for generating random double number and 64 bit posit number
+
+test.c is for testing the random number and the result
