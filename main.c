@@ -94,8 +94,6 @@ int main() {
     pB = castP64(0x5681656461331664);
     pC = castP64(0x1646AB3315DE255F);
 
-
-    /*
     //Testing sqrt
 
     pZ = p64_sqrt(pA);
@@ -113,7 +111,6 @@ int main() {
     printf("sqrt(pB) in double: %.15f\n", dZ);
 
     printf("\n");
-    */
       
     //Testing add
 

@@ -157,7 +157,6 @@ int main() {
                 break;
             
             case 6:
-            /*
                 printf("Enter one number: ");
                 if(scanf("%lf", &dA) != 1){
                     printf("Invalid input!\n");
@@ -177,7 +176,6 @@ int main() {
                 printf("The square root of %f is %f in posit32 data type\n", dA, dZ);
 
                 break;
-            */
 
             //comparison
             case 7:
