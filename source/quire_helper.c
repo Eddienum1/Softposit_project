@@ -34,6 +34,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "platform.h"
 #include "internals.h"
+#include <inttypes.h>
 
 
 void printBinary(uint64_t * s, int size) {
@@ -127,8 +128,7 @@ void printHex64(uint64_t s) {
 
 }
 void printHex(uint64_t s) {
-	printf("0x%llx\n", s);
-
+    printf("0x%016" PRIx64 "\n", s);
 }
 void printHexPX(uint32_t s, int size) {
 	s>>=(32-size);

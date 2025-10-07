@@ -16,7 +16,7 @@ int main(){
     //2^(-28) <= d1 < 2^28 is better than double
     //d1 >= 2^32 or d1 < 2^(-32) is worse than double
     double value = 1.0;
-    for(int i = 1; i <= 28; i++) value *= 2; 
+    for(int i = 1; i <= 29; i++) value /= 2; 
 
     //Double ULP
     double d1 = value;
@@ -52,15 +52,15 @@ int main(){
 
     //The diff is smaller, the higher precision around that value
     //The diff is larger, the lower precision around that value
-    printf("Double at value: d1 = %.20f\n", d1);
-    printf("Double next number: d2 = %.20f\n", d2);
-    printf("Double diff = %.20e\n", diff);//should be a very small number
+    printf("Double at value: d1 = %.15f\n", d1);
+    printf("Double next number: d2 = %.15f\n", d2);
+    printf("Double diff = %.15e\n", diff);//should be a very small number
 
     printf("\n");
 
-    printf("Posit64 at value: p1 = %.20f\n", pd1);
-    printf("Posit64 next number: p2 = %.20f\n", pd2);
-    printf("Posit64 diff = %.20e\n", pd2 - pd1);//should be 0
+    printf("Posit64 at value: p1 = %.15f\n", pd1);
+    printf("Posit64 next number: p2 = %.15f\n", pd2);
+    printf("Posit64 diff = %.15e\n", pd2 - pd1);//should be 0
 
     printf("\n");
 
